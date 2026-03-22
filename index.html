@@ -1,478 +1,691 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shivam Devatwal — Cybersecurity</title>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --bg:     #0e0e0e;
-    --bg2:    #161616;
-    --bg3:    #1e1e1e;
-    --border: #2a2a2a;
-    --text:   #e8e8e8;
-    --muted:  #666;
-    --accent: #00e676;
-    --blue:   #60b0ff;
-    --mono:   'IBM Plex Mono', monospace;
-    --sans:   'IBM Plex Sans', sans-serif;
-  }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Shivam Devatwal — SOC Analyst Aspirant, Cybersecurity Student, Security Tool Developer from Gurugram, India.">
+    <meta name="keywords" content="Shivam Devatwal, SOC Analyst, Cybersecurity, CipherHawk, Gurugram Police, Penetration Testing, Python">
+    <meta name="theme-color" content="#1a73e8">
+    <title>Shivam Devatwal — Cybersecurity</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
+        :root {
+            --bg: #ffffff;
+            --surface: #f8f9fa;
+            --border: #e9ecef;
+            --text: #212529;
+            --text-2: #495057;
+            --text-3: #868e96;
+            --accent: #1a73e8;
+            --accent-light: #e8f0fe;
+        }
 
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--sans);
-    font-size: 15px;
-    line-height: 1.75;
-    -webkit-font-smoothing: antialiased;
-  }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #0d1117;
+                --surface: #161b22;
+                --border: #30363d;
+                --text: #e6edf3;
+                --text-2: #8b949e;
+                --text-3: #484f58;
+                --accent: #4493f8;
+                --accent-light: #1a2640;
+            }
+        }
 
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 1.25rem 4rem;
-    background: rgba(14,14,14,0.92);
-    border-bottom: 1px solid var(--border);
-    backdrop-filter: blur(12px);
-  }
+        html { scroll-behavior: smooth; }
 
-  .logo { font-family: var(--mono); font-size: 0.8rem; color: var(--accent); text-decoration: none; letter-spacing: 0.05em; }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 15px;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
 
-  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-  .nav-links a { font-family: var(--mono); font-size: 0.72rem; color: var(--muted); text-decoration: none; letter-spacing: 0.08em; transition: color 0.2s; }
-  .nav-links a:hover { color: var(--text); }
+        /* ── NAV ── */
+        nav {
+            position: sticky;
+            top: 0;
+            background: var(--bg);
+            border-bottom: 1px solid var(--border);
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 52px;
+            z-index: 100;
+        }
 
-  .wrap { max-width: 860px; margin: 0 auto; padding: 0 2.5rem; }
+        .nav-name {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text);
+            text-decoration: none;
+            white-space: nowrap;
+        }
 
-  section { padding: 7rem 0; border-bottom: 1px solid var(--border); }
-  section:last-of-type { border-bottom: none; }
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+        }
 
-  .label {
-    font-family: var(--mono); font-size: 0.68rem; color: var(--accent);
-    letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 2.5rem;
-    display: flex; align-items: center; gap: 0.75rem;
-  }
-  .label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+        .nav-links a {
+            color: var(--text-2);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s;
+            white-space: nowrap;
+        }
 
-  /* HERO */
-  #hero { padding: 14rem 0 8rem; border-bottom: 1px solid var(--border); }
+        .nav-links a:hover { color: var(--accent); }
 
-  .hero-eyebrow {
-    font-family: var(--mono); font-size: 0.72rem; color: var(--muted);
-    letter-spacing: 0.12em; margin-bottom: 1.5rem;
-    opacity: 0; animation: up 0.5s ease forwards 0.1s;
-  }
+        /* hide some nav links on small screens */
+        @media (max-width: 480px) {
+            .nav-links .hide-mobile { display: none; }
+            nav { padding: 0 16px; }
+        }
 
-  .hero-name {
-    font-family: var(--sans); font-size: clamp(2.8rem, 6vw, 4.5rem);
-    font-weight: 300; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 1.5rem;
-    opacity: 0; animation: up 0.5s ease forwards 0.2s;
-  }
-  .hero-name strong { font-weight: 500; color: #fff; }
+        /* ── LAYOUT ── */
+        .container {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
 
-  .hero-sub {
-    font-family: var(--mono); font-size: 0.85rem; color: var(--accent);
-    margin-bottom: 1.5rem; min-height: 1.4em;
-    opacity: 0; animation: up 0.5s ease forwards 0.3s;
-  }
+        @media (max-width: 480px) {
+            .container { padding: 0 16px; }
+        }
 
-  .cursor { display: inline-block; width: 7px; height: 0.85em; background: var(--accent); vertical-align: middle; margin-left: 2px; animation: blink 1s step-end infinite; }
+        section {
+            padding: 56px 0;
+            border-bottom: 1px solid var(--border);
+        }
 
-  .hero-desc {
-    font-size: 0.95rem; color: var(--muted); max-width: 500px; line-height: 1.85; margin-bottom: 2.5rem;
-    opacity: 0; animation: up 0.5s ease forwards 0.4s;
-  }
+        section:last-of-type { border-bottom: none; }
 
-  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; opacity: 0; animation: up 0.5s ease forwards 0.5s; }
+        /* ── HERO ── */
+        .hero {
+            padding: 64px 0 56px;
+            border-bottom: 1px solid var(--border);
+        }
 
-  .btn { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.08em; padding: 0.7rem 1.5rem; text-decoration: none; transition: all 0.2s; display: inline-flex; align-items: center; gap: 0.4rem; border: 1px solid; }
-  .btn-fill { background: var(--accent); color: #0e0e0e; border-color: var(--accent); }
-  .btn-fill:hover { background: #69ff8a; border-color: #69ff8a; }
-  .btn-ghost { background: transparent; color: var(--muted); border-color: var(--border); }
-  .btn-ghost:hover { border-color: var(--muted); color: var(--text); }
+        @media (max-width: 480px) {
+            .hero { padding: 40px 0 48px; }
+        }
 
-  /* ABOUT */
-  .about-body { display: grid; grid-template-columns: 1fr 190px; gap: 4rem; align-items: start; }
-  .about-text p { font-size: 0.95rem; color: var(--muted); margin-bottom: 1rem; }
-  .about-text strong { color: var(--text); font-weight: 500; }
-  .about-side { display: flex; flex-direction: column; gap: 1px; }
-  .stat-box { background: var(--bg2); border: 1px solid var(--border); padding: 1.1rem 1.25rem; transition: border-color 0.2s; }
-  .stat-box:hover { border-color: var(--accent); }
-  .stat-val { font-family: var(--mono); font-size: 1.4rem; font-weight: 500; color: var(--accent); display: block; line-height: 1; margin-bottom: 0.3rem; }
-  .stat-key { font-family: var(--mono); font-size: 0.6rem; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; }
+        .hero-tag {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--accent);
+            background: var(--accent-light);
+            padding: 4px 12px;
+            border-radius: 4px;
+            margin-bottom: 18px;
+            letter-spacing: 0.3px;
+        }
 
-  /* EXPERIENCE */
-  .exp-list { display: flex; flex-direction: column; gap: 1px; }
+        .hero h1 {
+            font-size: clamp(28px, 6vw, 40px);
+            font-weight: 600;
+            letter-spacing: -0.5px;
+            line-height: 1.2;
+            margin-bottom: 8px;
+            color: var(--text);
+        }
 
-  .exp-card {
-    background: var(--bg2); border: 1px solid var(--border); padding: 1.5rem 1.75rem;
-    transition: border-color 0.2s; position: relative;
-  }
-  .exp-card:hover { border-color: #333; }
-  .exp-card::before { content: ''; position: absolute; top: 0; left: 0; bottom: 0; width: 2px; background: var(--accent); opacity: 0; transition: opacity 0.2s; }
-  .exp-card:hover::before { opacity: 1; }
+        .hero-title {
+            font-size: clamp(14px, 3vw, 18px);
+            font-weight: 400;
+            color: var(--text-2);
+            margin-bottom: 18px;
+            line-height: 1.5;
+        }
 
-  .exp-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: 0.5rem; flex-wrap: wrap; }
+        .hero-bio {
+            font-size: 15px;
+            color: var(--text-2);
+            max-width: 580px;
+            line-height: 1.8;
+            margin-bottom: 28px;
+        }
 
-  .exp-title { font-size: 0.95rem; font-weight: 500; color: var(--text); }
-  .exp-org { font-family: var(--mono); font-size: 0.72rem; color: var(--accent); margin-top: 0.15rem; }
+        @media (max-width: 480px) {
+            .hero-bio { font-size: 14px; }
+        }
 
-  .exp-date { font-family: var(--mono); font-size: 0.65rem; color: var(--muted); letter-spacing: 0.06em; white-space: nowrap; }
+        .hero-links {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
 
-  .exp-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.75; margin-top: 0.5rem; }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 9px 18px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.2s;
+            border: 1px solid transparent;
+            white-space: nowrap;
+        }
 
-  .exp-badge {
-    display: inline-block; margin-top: 0.75rem;
-    font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase;
-    padding: 0.2rem 0.6rem; border: 1px solid;
-    color: var(--accent); border-color: rgba(0,230,118,0.3); background: rgba(0,230,118,0.06);
-  }
-  .exp-badge.blue { color: var(--blue); border-color: rgba(96,176,255,0.3); background: rgba(96,176,255,0.06); }
+        .btn-primary { background: var(--accent); color: #fff; }
+        .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
+        .btn-secondary { background: var(--surface); color: var(--text); border-color: var(--border); }
+        .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
 
-  /* SKILLS */
-  .skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
-  .skill-block { background: var(--bg); padding: 1.5rem 1.75rem; transition: background 0.2s; }
-  .skill-block:hover { background: var(--bg2); }
-  .skill-label { font-family: var(--mono); font-size: 0.62rem; color: var(--accent); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 1rem; }
-  .chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-  .chip { font-family: var(--mono); font-size: 0.68rem; color: var(--muted); background: var(--bg3); border: 1px solid var(--border); padding: 0.2rem 0.6rem; transition: all 0.15s; }
-  .chip:hover { color: var(--accent); border-color: var(--accent); }
+        @media (max-width: 360px) {
+            .btn { padding: 8px 14px; font-size: 13px; }
+        }
 
-  /* PROJECTS */
-  .project-row { display: grid; grid-template-columns: 2.5rem 1fr auto; gap: 1.5rem; align-items: start; padding: 1.75rem 0; border-bottom: 1px solid var(--border); }
-  .project-row:first-child { border-top: 1px solid var(--border); }
-  .project-row:last-child { border-bottom: none; }
-  .pnum { font-family: var(--mono); font-size: 0.65rem; color: var(--muted); padding-top: 0.15rem; }
-  .pmain { display: flex; flex-direction: column; gap: 0.4rem; }
-  .ptitle { font-size: 0.95rem; font-weight: 500; color: var(--text); }
-  .pdesc { font-size: 0.85rem; color: var(--muted); max-width: 520px; line-height: 1.7; }
-  .ptags { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.2rem; }
-  .ptag { font-family: var(--mono); font-size: 0.6rem; color: var(--muted); opacity: 0.7; }
-  .ptag::before { content: '#'; color: var(--accent); opacity: 0.6; }
-  .pmeta { display: flex; flex-direction: column; align-items: flex-end; gap: 0.5rem; padding-top: 0.1rem; }
-  .badge { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.2rem 0.55rem; border: 1px solid; }
-  .badge.active { color: var(--accent); border-color: rgba(0,230,118,0.3); background: rgba(0,230,118,0.05); }
-  .badge.planned { color: var(--muted); border-color: var(--border); }
-  .plink { font-family: var(--mono); font-size: 0.65rem; color: var(--muted); text-decoration: none; transition: color 0.2s; }
-  .plink:hover { color: var(--accent); }
+        /* ── SECTION TITLES ── */
+        .section-label {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-3);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
 
-  /* CONTACT */
-  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
-  .contact-desc { font-size: 0.95rem; color: var(--muted); line-height: 1.85; margin-bottom: 2rem; }
-  .clinks { display: flex; flex-direction: column; }
-  .clink { display: flex; align-items: center; gap: 1rem; padding: 0.85rem 0; border-bottom: 1px solid var(--border); text-decoration: none; transition: all 0.15s; }
-  .clink:first-child { border-top: 1px solid var(--border); }
-  .clink:hover .clink-label { color: var(--text); }
-  .clink:hover .clink-arr { opacity: 1; }
-  .clink-key { font-family: var(--mono); font-size: 0.62rem; color: var(--accent); letter-spacing: 0.1em; min-width: 70px; text-transform: uppercase; }
-  .clink-label { font-family: var(--mono); font-size: 0.78rem; color: var(--muted); flex: 1; transition: color 0.15s; }
-  .clink-arr { font-family: var(--mono); font-size: 0.7rem; color: var(--accent); opacity: 0; transition: opacity 0.15s; }
+        h2 {
+            font-size: clamp(18px, 4vw, 22px);
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 24px;
+            letter-spacing: -0.3px;
+        }
 
-  .term { background: var(--bg2); border: 1px solid var(--border); }
-  .term-bar { display: flex; align-items: center; gap: 0.4rem; padding: 0.6rem 1rem; border-bottom: 1px solid var(--border); }
-  .td { width: 9px; height: 9px; border-radius: 50%; opacity: 0.6; }
-  .td.r { background: #ff5f56; } .td.y { background: #ffbd2e; } .td.g { background: #27c93f; }
-  .term-title { font-family: var(--mono); font-size: 0.62rem; color: var(--muted); margin-left: 0.5rem; }
-  .term-body { padding: 1.25rem 1.25rem 1.5rem; font-family: var(--mono); font-size: 0.78rem; line-height: 2; }
-  .tp { color: var(--accent); } .tc { color: var(--text); } .to { color: var(--muted); } .tv { color: var(--blue); }
+        /* ── SKILLS ── */
+        .skills-grid { display: flex; flex-direction: column; gap: 14px; }
 
-  footer { text-align: center; padding: 3rem 2.5rem; font-family: var(--mono); font-size: 0.65rem; color: var(--muted); letter-spacing: 0.08em; }
-  footer a { color: var(--muted); text-decoration: none; }
-  footer a:hover { color: var(--accent); }
+        .skill-row {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
 
-  @keyframes up { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:none; } }
-  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+        .skill-label {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-2);
+            min-width: 150px;
+            flex-shrink: 0;
+            padding-top: 3px;
+        }
 
-  .fade { opacity:0; transform:translateY(12px); transition: opacity 0.55s ease, transform 0.55s ease; }
-  .fade.in { opacity:1; transform:none; }
+        @media (max-width: 520px) {
+            .skill-label {
+                min-width: 100%;
+                padding-top: 0;
+                margin-bottom: 4px;
+            }
+        }
 
-  @media (max-width: 680px) {
-    nav { padding: 1rem 1.5rem; }
-    .nav-links { gap: 1.25rem; }
-    .wrap { padding: 0 1.5rem; }
-    .about-body, .contact-grid { grid-template-columns: 1fr; }
-    .skills-grid { grid-template-columns: 1fr; }
-    .project-row { grid-template-columns: 2rem 1fr; }
-    .pmeta { display: none; }
-    .exp-top { flex-direction: column; }
-  }
-</style>
+        .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+
+        .tag {
+            font-size: 12px;
+            color: var(--text-2);
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 3px 10px;
+            border-radius: 4px;
+            line-height: 1.5;
+        }
+
+        /* ── EXPERIENCE ── */
+        .exp-list { display: flex; flex-direction: column; gap: 32px; }
+
+        .exp-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 2px;
+            margin-bottom: 2px;
+        }
+
+        .exp-title { font-size: 15px; font-weight: 600; color: var(--text); }
+
+        .exp-date {
+            font-size: 13px;
+            color: var(--text-3);
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .exp-org {
+            font-size: 13px;
+            color: var(--accent);
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        .exp-bullets {
+            padding-left: 16px;
+            color: var(--text-2);
+            font-size: 14px;
+        }
+
+        .exp-bullets li { margin-bottom: 5px; line-height: 1.6; }
+
+        /* ── PROJECTS ── */
+        .project-card {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 14px;
+            transition: border-color 0.2s;
+        }
+
+        .project-card:hover { border-color: var(--accent); }
+
+        @media (max-width: 480px) {
+            .project-card { padding: 16px; }
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .project-name { font-size: 15px; font-weight: 600; color: var(--text); line-height: 1.4; }
+
+        .project-live {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--accent);
+            background: var(--accent-light);
+            padding: 3px 10px;
+            border-radius: 4px;
+            text-decoration: none;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .project-desc {
+            font-size: 14px;
+            color: var(--text-2);
+            margin-bottom: 12px;
+            line-height: 1.7;
+        }
+
+        .project-stack { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+
+        .project-links { display: flex; gap: 14px; flex-wrap: wrap; }
+
+        .project-link {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .project-link:hover { text-decoration: underline; }
+
+        /* ── EDUCATION ── */
+        .edu-item { margin-bottom: 20px; }
+
+        .edu-header {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 2px;
+            margin-bottom: 2px;
+        }
+
+        .edu-degree { font-size: 15px; font-weight: 600; color: var(--text); line-height: 1.4; }
+        .edu-date { font-size: 13px; color: var(--text-3); white-space: nowrap; }
+        .edu-school { font-size: 13px; color: var(--accent); font-weight: 500; margin-bottom: 3px; }
+        .edu-detail { font-size: 13px; color: var(--text-3); line-height: 1.5; }
+
+        /* ── RECOGNITION ── */
+        .recog-list { display: flex; flex-direction: column; gap: 14px; }
+
+        .recog-item { display: flex; gap: 12px; align-items: flex-start; }
+
+        .recog-dot {
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            background: var(--accent);
+            margin-top: 9px;
+            flex-shrink: 0;
+        }
+
+        .recog-text { font-size: 14px; color: var(--text-2); line-height: 1.6; }
+        .recog-text strong { color: var(--text); font-weight: 500; }
+
+        /* ── CONTACT ── */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        @media (max-width: 480px) {
+            .contact-grid { grid-template-columns: 1fr; }
+        }
+
+        .contact-item {
+            padding: 16px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            text-decoration: none;
+            transition: border-color 0.2s;
+            display: block;
+        }
+
+        .contact-item:hover { border-color: var(--accent); }
+
+        .contact-label {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+
+        .contact-value {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--accent);
+            word-break: break-all;
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            text-align: center;
+            padding: 28px 16px;
+            font-size: 13px;
+            color: var(--text-3);
+            border-top: 1px solid var(--border);
+        }
+
+        /* ── TABLET (iPad) ── */
+        @media (min-width: 481px) and (max-width: 768px) {
+            .hero { padding: 52px 0 48px; }
+            section { padding: 48px 0; }
+            .skill-label { min-width: 130px; }
+        }
+    </style>
 </head>
 <body>
 
 <nav>
-  <a class="logo" href="#hero">~/shivam</a>
-  <ul class="nav-links">
-    <li><a href="#about">about</a></li>
-    <li><a href="#experience">experience</a></li>
-    <li><a href="#skills">skills</a></li>
-    <li><a href="#projects">projects</a></li>
-    <li><a href="#contact">contact</a></li>
-  </ul>
+    <a href="#" class="nav-name">Shivam Devatwal</a>
+    <ul class="nav-links">
+        <li class="hide-mobile"><a href="#skills">Skills</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
 </nav>
 
-<div class="wrap">
+<div class="container">
 
-<section id="hero">
-  <p class="hero-eyebrow">B.Tech CSE (Cybersecurity) · Sushant University · Gurugram</p>
-  <h1 class="hero-name"><strong>Shivam</strong><br>Devatwal.</h1>
-  <p class="hero-sub" id="typed"><span class="cursor"></span></p>
-  <p class="hero-desc">
-    Cybersecurity student with hands-on internship experience at Gurugram Police Cyber Cell
-    and Marengo Asia Hospital. Building real tools, solving CTF challenges, and learning
-    how systems break — so I can help defend them.
-  </p>
-  <div class="hero-actions">
-    <a href="#projects" class="btn btn-fill">View Projects →</a>
-    <a href="#contact" class="btn btn-ghost">Get in Touch ↓</a>
-  </div>
-</section>
-
-<section id="about">
-  <p class="label fade">About me</p>
-  <div class="about-body">
-    <div class="about-text fade">
-      <p>I'm <strong>Shivam Devatwal</strong>, a 6th semester B.Tech CSE (Cybersecurity) student at <strong>Sushant University, Gurugram</strong>. I'm passionate about ethical hacking, application security, and building tools that solve real-world security problems.</p>
-      <p>I've had the opportunity to intern with <strong>Dr. Rakshit Tandon and Gurugram Police Cyber Cell</strong> — our project received an appreciation letter from ACP Priyanshu Dewan, Cyber Cell Gurugram. I'm also currently interning at <strong>Marengo Asia Hospital, Faridabad</strong> in an IT Infrastructure role.</p>
-      <p>I'm currently completing the <strong>Google Cybersecurity Professional Certificate</strong> and actively looking for internships and collaborative security projects. I believe the best defenders think like attackers.</p>
-    </div>
-    <div class="about-side fade">
-      <div class="stat-box"><span class="stat-val">6th</span><span class="stat-key">Semester</span></div>
-      <div class="stat-box"><span class="stat-val">2</span><span class="stat-key">Internships</span></div>
-      <div class="stat-box"><span class="stat-val">ACP</span><span class="stat-key">Appreciation letter</span></div>
-      <div class="stat-box"><span class="stat-val">2027</span><span class="stat-key">Graduating</span></div>
-    </div>
-  </div>
-</section>
-
-<section id="experience">
-  <p class="label fade">Experience</p>
-  <div class="exp-list fade">
-
-    <div class="exp-card">
-      <div class="exp-top">
-        <div>
-          <p class="exp-title">IT Infrastructure Intern</p>
-          <p class="exp-org">Marengo Asia Hospital, Faridabad</p>
+    <!-- HERO -->
+    <div class="hero">
+        <div class="hero-tag">Open to Work — SOC Analyst Roles</div>
+        <h1>Shivam Devatwal</h1>
+        <div class="hero-title">SOC Analyst Aspirant &middot; Cybersecurity Student &middot; Security Tool Developer</div>
+        <p class="hero-bio">
+            Cybersecurity student at Sushant University building real security tools and gaining hands-on experience in threat detection, vulnerability assessment, and security operations. Currently interning at Marengo Asia Hospital. Previously interned with Gurugram Police Cyber Cell where I received an appreciation letter from the ACP, Cyber Crime.
+        </p>
+        <div class="hero-links">
+            <a href="https://cipherhawk-production.up.railway.app" target="_blank" class="btn btn-primary">View CipherHawk →</a>
+            <a href="https://www.linkedin.com/in/shivam-devatwal-b081062b1/" target="_blank" class="btn btn-secondary">LinkedIn</a>
+            <a href="https://github.com/Shivam0087" target="_blank" class="btn btn-secondary">GitHub</a>
+            <a href="mailto:Shivamdevatwal87@gmail.com" class="btn btn-secondary">Email</a>
+            <a href="Shivam_Devatwal_Resume.pdf" download="Shivam_Devatwal_Resume.pdf" class="btn btn-secondary">⬇ Resume</a>
         </div>
-        <span class="exp-date">July 2025 — Present</span>
-      </div>
-      <p class="exp-desc">Working in the IT infrastructure team at one of NCR's leading hospitals. Responsibilities include network monitoring, system administration, and supporting the hospital's internal IT operations and security posture.</p>
-      <span class="exp-badge blue">Current Role · ₹5,000/month stipend</span>
     </div>
 
-    <div class="exp-card">
-      <div class="exp-top">
-        <div>
-          <p class="exp-title">Cybersecurity Intern</p>
-          <p class="exp-org">Gurugram Police Cyber Cell × Dr. Rakshit Tandon</p>
+    <!-- SKILLS -->
+    <section id="skills">
+        <div class="section-label">What I Know</div>
+        <h2>Technical Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-row">
+                <div class="skill-label">SOC & Operations</div>
+                <div class="skill-tags">
+                    <span class="tag">Threat Detection</span>
+                    <span class="tag">SIEM</span>
+                    <span class="tag">Log Analysis</span>
+                    <span class="tag">Incident Response</span>
+                    <span class="tag">IOC Analysis</span>
+                </div>
+            </div>
+            <div class="skill-row">
+                <div class="skill-label">Offensive Security</div>
+                <div class="skill-tags">
+                    <span class="tag">Penetration Testing</span>
+                    <span class="tag">OWASP Top 10</span>
+                    <span class="tag">Web App Security</span>
+                    <span class="tag">Vulnerability Assessment</span>
+                    <span class="tag">Burp Suite</span>
+                </div>
+            </div>
+            <div class="skill-row">
+                <div class="skill-label">Programming</div>
+                <div class="skill-tags">
+                    <span class="tag">Python</span>
+                    <span class="tag">Flask</span>
+                    <span class="tag">JavaScript</span>
+                    <span class="tag">SQL</span>
+                    <span class="tag">Bash</span>
+                </div>
+            </div>
+            <div class="skill-row">
+                <div class="skill-label">Web Security</div>
+                <div class="skill-tags">
+                    <span class="tag">SQL Injection</span>
+                    <span class="tag">XSS</span>
+                    <span class="tag">Open Redirect</span>
+                    <span class="tag">CSRF</span>
+                    <span class="tag">Missing Headers</span>
+                </div>
+            </div>
+            <div class="skill-row">
+                <div class="skill-label">Tools</div>
+                <div class="skill-tags">
+                    <span class="tag">Nmap</span>
+                    <span class="tag">Wireshark</span>
+                    <span class="tag">Linux</span>
+                    <span class="tag">Git</span>
+                    <span class="tag">GitHub</span>
+                </div>
+            </div>
         </div>
-        <span class="exp-date">June – July 2025 · 1 month</span>
-      </div>
-      <p class="exp-desc">Collaborated on a cybersecurity project under the mentorship of Dr. Rakshit Tandon, in partnership with Gurugram Police. The project was appreciated by ACP Priyanshu Dewan and the team received a formal appreciation letter from Cyber Cell Gurugram, Sector 43.</p>
-      <span class="exp-badge">Appreciation Letter · ACP Priyanshu Dewan</span>
-    </div>
+    </section>
 
-  </div>
-</section>
+    <!-- EXPERIENCE -->
+    <section id="experience">
+        <div class="section-label">Where I Have Worked</div>
+        <h2>Experience</h2>
+        <div class="exp-list">
 
-<section id="skills">
-  <p class="label fade">Skills</p>
-  <div class="skills-grid fade">
-    <div class="skill-block">
-      <p class="skill-label">Languages</p>
-      <div class="chips">
-        <span class="chip">Python</span><span class="chip">Bash</span><span class="chip">JavaScript</span><span class="chip">SQL</span><span class="chip">C</span>
-      </div>
-    </div>
-    <div class="skill-block">
-      <p class="skill-label">Security Tools</p>
-      <div class="chips">
-        <span class="chip">Burp Suite</span><span class="chip">Nmap</span><span class="chip">Wireshark</span><span class="chip">Metasploit</span><span class="chip">Kali Linux</span>
-      </div>
-    </div>
-    <div class="skill-block">
-      <p class="skill-label">Domains</p>
-      <div class="chips">
-        <span class="chip">Web AppSec</span><span class="chip">Pen Testing</span><span class="chip">Network Security</span><span class="chip">IT Infrastructure</span><span class="chip">OSINT</span>
-      </div>
-    </div>
-    <div class="skill-block">
-      <p class="skill-label">Currently Learning</p>
-      <div class="chips">
-        <span class="chip">Google Cybersecurity Cert</span><span class="chip">Docker</span><span class="chip">SIEM</span><span class="chip">Cloud Security</span>
-      </div>
-    </div>
-  </div>
-</section>
+            <div class="exp-item">
+                <div class="exp-header">
+                    <div class="exp-title">IT Infrastructure Intern</div>
+                    <div class="exp-date">Mar 2026 – Present</div>
+                </div>
+                <div class="exp-org">Marengo Asia Hospital — Faridabad, Haryana</div>
+                <ul class="exp-bullets">
+                    <li>Supporting hospital IT infrastructure operations including network monitoring and internal system security assessments.</li>
+                    <li>Assisting with security compliance and documentation of IT protocols for critical healthcare systems.</li>
+                </ul>
+            </div>
 
-<section id="projects">
-  <p class="label fade">Projects</p>
-  <div class="fade">
+            <div class="exp-item">
+                <div class="exp-header">
+                    <div class="exp-title">Cyber Security Intern</div>
+                    <div class="exp-date">Jun 2025 – Jul 2025</div>
+                </div>
+                <div class="exp-org">Gurugram Police Cyber Cell — Gurugram, Haryana</div>
+                <ul class="exp-bullets">
+                    <li>Selected for the 12th GPCSSI Program under Dr. Rakshit Tandon and the Cyber Crime Detection Unit.</li>
+                    <li>Led a digital safety project reaching 500+ community members across 3 districts.</li>
+                    <li>Produced 3 investigation reports for senior law enforcement analyzing real cybercrime patterns.</li>
+                    <li>Developed a Telegram Monitoring Tool for detecting illegal activity on the platform.</li>
+                    <li>Received an appreciation letter from ACP Shri Priyanshu Dewan, Cyber Crime, Gurugram.</li>
+                </ul>
+            </div>
 
-    <div class="project-row">
-      <span class="pnum">01</span>
-      <div class="pmain">
-        <span class="ptitle">Web Vulnerability Scanner</span>
-        <span class="pdesc">Python CLI tool that crawls target URLs and detects SQLi, XSS, and open redirect vulnerabilities. Generates structured HTML reports with severity ratings.</span>
-        <div class="ptags"><span class="ptag">python</span><span class="ptag">beautifulsoup</span><span class="ptag">requests</span><span class="ptag">jinja2</span><span class="ptag">appsec</span></div>
-      </div>
-      <div class="pmeta">
-        <span class="badge active">Active</span>
-        <a href="https://github.com/shivamdevatwal" class="plink">GitHub ↗</a>
-      </div>
-    </div>
+        </div>
+    </section>
 
-    <div class="project-row">
-      <span class="pnum">02</span>
-      <div class="pmain">
-        <span class="ptitle">Network Traffic Analyser</span>
-        <span class="pdesc">Passive network monitor using Scapy that flags anomalous traffic — port scans, ARP spoofing, and unusual data volumes — with structured alert logging.</span>
-        <div class="ptags"><span class="ptag">python</span><span class="ptag">scapy</span><span class="ptag">wireshark</span><span class="ptag">networking</span></div>
-      </div>
-      <div class="pmeta">
-        <span class="badge planned">Planned</span>
-        <a href="https://github.com/shivamdevatwal" class="plink">GitHub ↗</a>
-      </div>
-    </div>
+    <!-- PROJECTS -->
+    <section id="projects">
+        <div class="section-label">What I Have Built</div>
+        <h2>Projects</h2>
 
-    <div class="project-row">
-      <span class="pnum">03</span>
-      <div class="pmain">
-        <span class="ptitle">CTF Writeup Portfolio</span>
-        <span class="pdesc">Documented methodology and solutions for challenges from TryHackMe and HackTheBox across web, crypto, and forensics categories.</span>
-        <div class="ptags"><span class="ptag">tryhackme</span><span class="ptag">hackthebox</span><span class="ptag">writeups</span><span class="ptag">ethical-hacking</span></div>
-      </div>
-      <div class="pmeta">
-        <span class="badge planned">Planned</span>
-        <a href="https://github.com/shivamdevatwal" class="plink">GitHub ↗</a>
-      </div>
-    </div>
+        <div class="project-card">
+            <div class="project-header">
+                <div class="project-name">CipherHawk — Web Vulnerability Scanner</div>
+                <a href="https://cipherhawk-production.up.railway.app" target="_blank" class="project-live">Live ↗</a>
+            </div>
+            <p class="project-desc">
+                A full-stack web vulnerability scanner built from scratch and deployed publicly. Detects SQL Injection, XSS, Open Redirect, Missing Security Headers, and Sensitive File Exposure using 100+ test payloads. Features secure authentication, OTP verification, rate limiting, IP banning, and downloadable PDF security reports with fix instructions.
+            </p>
+            <div class="project-stack">
+                <span class="tag">Python</span>
+                <span class="tag">Flask</span>
+                <span class="tag">SQLite</span>
+                <span class="tag">JavaScript</span>
+                <span class="tag">HTML/CSS</span>
+                <span class="tag">SendGrid</span>
+                <span class="tag">Railway</span>
+                <span class="tag">Git</span>
+            </div>
+            <div class="project-links">
+                <a href="https://cipherhawk-production.up.railway.app" target="_blank" class="project-link">Live Site →</a>
+                <a href="https://github.com/Shivam0087/cipherhawk" target="_blank" class="project-link">GitHub →</a>
+            </div>
+        </div>
 
-    <div class="project-row">
-      <span class="pnum">04</span>
-      <div class="pmain">
-        <span class="ptitle">Phishing URL Detector</span>
-        <span class="pdesc">ML classifier trained on UCI phishing dataset using scikit-learn. Extracts URL features and predicts phishing likelihood — exposed via a Flask API.</span>
-        <div class="ptags"><span class="ptag">python</span><span class="ptag">scikit-learn</span><span class="ptag">flask</span><span class="ptag">ml</span><span class="ptag">threat-intel</span></div>
-      </div>
-      <div class="pmeta">
-        <span class="badge planned">Planned</span>
-        <a href="https://github.com/shivamdevatwal" class="plink">GitHub ↗</a>
-      </div>
-    </div>
+        <div class="project-card">
+            <div class="project-header">
+                <div class="project-name">Telegram Monitoring Tool</div>
+                <span style="font-size:12px;color:var(--text-3);flex-shrink:0;">GPCSSI 2025</span>
+            </div>
+            <p class="project-desc">
+                Developed during the Gurugram Police Cyber Security Internship. Monitors Telegram groups and channels for suspicious activity and illegal content, supporting cybercrime investigations and proactive threat detection for law enforcement.
+            </p>
+            <div class="project-stack">
+                <span class="tag">Python</span>
+                <span class="tag">Telegram API</span>
+                <span class="tag">Threat Detection</span>
+                <span class="tag">Cybercrime Investigation</span>
+            </div>
+        </div>
 
-    <div class="project-row">
-      <span class="pnum">05</span>
-      <div class="pmain">
-        <span class="ptitle">Home Lab Pentest Report</span>
-        <span class="pdesc">Full penetration test of a VirtualBox lab (Kali + Metasploitable2). Documented recon, exploitation, and post-exploitation phases in a professional report format.</span>
-        <div class="ptags"><span class="ptag">kali</span><span class="ptag">metasploit</span><span class="ptag">nmap</span><span class="ptag">pentest-report</span></div>
-      </div>
-      <div class="pmeta">
-        <span class="badge planned">Planned</span>
-        <a href="#" class="plink">PDF ↗</a>
-      </div>
-    </div>
+    </section>
 
-  </div>
-</section>
+    <!-- EDUCATION -->
+    <section id="education">
+        <div class="section-label">Education</div>
+        <h2>Education</h2>
 
-<section id="contact">
-  <p class="label fade">Contact</p>
-  <div class="contact-grid">
-    <div class="fade">
-      <p class="contact-desc">Open to internships, bug bounty collaborations, and security projects. If you're a recruiter or fellow security enthusiast — let's connect.</p>
-      <div class="clinks">
-        <a href="mailto:Shivamdevatwal87@gmail.com" class="clink">
-          <span class="clink-key">Email</span>
-          <span class="clink-label">Shivamdevatwal87@gmail.com</span>
-          <span class="clink-arr">↗</span>
-        </a>
-        <a href="tel:+918527394887" class="clink">
-          <span class="clink-key">Phone</span>
-          <span class="clink-label">+91 85273 94887</span>
-          <span class="clink-arr">↗</span>
-        </a>
-        <a href="https://linkedin.com/in/shivam-devatwal" class="clink">
-          <span class="clink-key">LinkedIn</span>
-          <span class="clink-label">Shivam Devatwal</span>
-          <span class="clink-arr">↗</span>
-        </a>
-        <a href="https://github.com/shivamdevatwal" class="clink">
-          <span class="clink-key">GitHub</span>
-          <span class="clink-label">github.com/shivamdevatwal</span>
-          <span class="clink-arr">↗</span>
-        </a>
-      </div>
-    </div>
+        <div class="edu-item">
+            <div class="edu-header">
+                <div class="edu-degree">B.Tech — Computer Science, Cyber Security</div>
+                <div class="edu-date">2023 – 2027</div>
+            </div>
+            <div class="edu-school">Sushant University — Gurugram, Haryana</div>
+            <div class="edu-detail">Relevant Coursework: Network Security, Ethical Hacking, Cryptography, Operating Systems, Database Security</div>
+        </div>
 
-    <div class="term fade">
-      <div class="term-bar">
-        <span class="td r"></span><span class="td y"></span><span class="td g"></span>
-        <span class="term-title">bash — shivam.sh</span>
-      </div>
-      <div class="term-body">
-        <div><span class="tp">❯ </span><span class="tc">whoami</span></div>
-        <div><span class="to">→ </span><span class="tv">shivam_devatwal</span></div>
-        <div><span class="tp">❯ </span><span class="tc">cat status.txt</span></div>
-        <div><span class="to">→ 6th sem · Sushant Univ</span></div>
-        <div><span class="to">→ intern @ Marengo Asia</span></div>
-        <div><span class="to">→ Google Cybersec cert</span></div>
-        <div><span class="tp">❯ </span><span class="tc">echo open_to</span></div>
-        <div><span class="to">→ </span><span class="tv">internships &amp; collabs</span></div>
-        <div><span class="tp">❯ </span><span class="tc" style="border-right:2px solid var(--accent);padding-right:2px;animation:blink 1s step-end infinite"> </span></div>
-      </div>
-    </div>
-  </div>
-</section>
+        <div class="edu-item">
+            <div class="edu-header">
+                <div class="edu-degree">Class 12, Science Stream</div>
+                <div class="edu-date">73% &middot; 2023</div>
+            </div>
+            <div class="edu-school">Suraj School, Sector 75, Gurugram</div>
+        </div>
+
+        <div class="edu-item">
+            <div class="edu-header">
+                <div class="edu-degree">Class 10</div>
+                <div class="edu-date">70% &middot; 2021</div>
+            </div>
+            <div class="edu-school">Suraj School, Sector 75, Gurugram</div>
+        </div>
+    </section>
+
+    <!-- RECOGNITION -->
+    <section id="recognition">
+        <div class="section-label">Recognition</div>
+        <h2>Certifications &amp; Recognition</h2>
+        <div class="recog-list">
+            <div class="recog-item">
+                <div class="recog-dot"></div>
+                <div class="recog-text"><strong>Official Appreciation Letter</strong> — Assistant Commissioner of Police, Cyber Crime, Gurugram for outstanding performance during GPCSSI 2025.</div>
+            </div>
+            <div class="recog-item">
+                <div class="recog-dot"></div>
+                <div class="recog-text"><strong>Selected Participant</strong> — 12th Gurugram Police Cyber Security Summer Internship Program (GPCSSI 2025).</div>
+            </div>
+            <div class="recog-item">
+                <div class="recog-dot"></div>
+                <div class="recog-text"><strong>Google Cybersecurity Professional Certificate</strong> — In Progress, Coursera (2025–2026).</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+        <div class="section-label">Get In Touch</div>
+        <h2>Contact</h2>
+        <p style="color:var(--text-2);margin-bottom:20px;font-size:14px;">Open to SOC Analyst, Cyber Threat Analyst, and Security Operations roles.</p>
+        <div class="contact-grid">
+            <a href="mailto:Shivamdevatwal87@gmail.com" class="contact-item">
+                <div class="contact-label">Email</div>
+                <div class="contact-value">Shivamdevatwal87@gmail.com</div>
+            </a>
+            <a href="https://www.linkedin.com/in/shivam-devatwal-b081062b1/" target="_blank" class="contact-item">
+                <div class="contact-label">LinkedIn</div>
+                <div class="contact-value">shivam-devatwal</div>
+            </a>
+            <a href="https://github.com/Shivam0087" target="_blank" class="contact-item">
+                <div class="contact-label">GitHub</div>
+                <div class="contact-value">github.com/Shivam0087</div>
+            </a>
+            <a href="https://cipherhawk-production.up.railway.app" target="_blank" class="contact-item">
+                <div class="contact-label">Live Project</div>
+                <div class="contact-value">CipherHawk Scanner</div>
+            </a>
+            <a href="Shivam_Devatwal_Resume.pdf" download="Shivam_Devatwal_Resume.pdf" class="contact-item">
+                <div class="contact-label">Resume</div>
+                <div class="contact-value">Download PDF →</div>
+            </a>
+        </div>
+    </section>
 
 </div>
 
 <footer>
-  Shivam Devatwal · Gurugram · 2025 ·
-  <a href="mailto:Shivamdevatwal87@gmail.com">Shivamdevatwal87@gmail.com</a>
+    <p>Shivam Devatwal &middot; Gurugram, Haryana &middot; 2026</p>
 </footer>
 
-<script>
-  const fades = document.querySelectorAll('.fade');
-  const io = new IntersectionObserver(entries => {
-    entries.forEach((e, i) => {
-      if (e.isIntersecting) {
-        setTimeout(() => e.target.classList.add('in'), i * 60);
-        io.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.08 });
-  fades.forEach(el => io.observe(el));
-
-  const roles = [
-    'Cybersecurity Student',
-    'Ethical Hacking Enthusiast',
-    'IT Infrastructure Intern',
-    'Aspiring Penetration Tester',
-  ];
-  let ri = 0, ci = 0, del = false;
-  const el = document.getElementById('typed');
-
-  function tick() {
-    const word = roles[ri];
-    if (!del) {
-      ci++;
-      el.innerHTML = word.slice(0, ci) + '<span class="cursor"></span>';
-      if (ci === word.length) { del = true; setTimeout(tick, 1800); return; }
-    } else {
-      ci--;
-      el.innerHTML = word.slice(0, ci) + '<span class="cursor"></span>';
-      if (ci === 0) { del = false; ri = (ri + 1) % roles.length; }
-    }
-    setTimeout(tick, del ? 35 : 75);
-  }
-  setTimeout(tick, 800);
-</script>
 </body>
 </html>
